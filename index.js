@@ -7,10 +7,11 @@
  * Variables declared with let and const inside a block of code 
  * (denoted by curly braces { }) get stuck in what is known as
  * the temporal dead zone until the variable's declaration is 
- * processed. Thus, let and const eliminate the issue 
+ * processed. Thus, these two keywords eliminate the issue 
  * of hoisting whereby executing any JavaScript code only 
- * after all variables declared with var, either scoped globally or locally to 
- * the top of the function scope using var, are raised. 
+ * after all variables declared with var, either scoped 
+ * globally or locally to the top of the function scope, are 
+ * raised. 
  * Note: Hoisting is a result of how JavaScript is interpreted
  * by your browser.
  */
