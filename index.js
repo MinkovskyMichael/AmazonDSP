@@ -1,35 +1,47 @@
 /*
  * Primary file for the API
- * 
  */
- 
+
+ /*
+ * let and const
+ * Variables declared with let and const inside a block of code 
+ * (denoted by curly braces { }) get stuck in what is known as
+ * the temporal dead zone until the variable's declaration is 
+ * processed. Thus, let and const eliminate the issue 
+ * of hoisting whereby executing any JavaScript code only 
+ * after all variables declared with var, either scoped globally or locally to 
+ * the top of the function scope using var, are raised. 
+ * Note: Hoisting is a result of how JavaScript is interpreted
+ * by your browser.
+ */
+
     // Dependencies
-    var http = require('http');
-    var url = require('url');
-    var StringDecoder = require('string_decoder').StringDecoder;
+    const http = require('http');
+    const url = require('url');
+    const StringDecoder = require('string_decoder').StringDecoder;
     
     // The server should respond to all requests with a string
-    var server = http.createServer(function(req, res){
+    let server = http.createServer(function(req, res){
     
     // Get the URL and parse it
-    var parsedUrl = url.parse(req.url, true);
+    let parsedUrl = url.parse(req.url, true);
 
     // Get the path
-    var path = parsedUrl.pathname;
-    var trimmedPath = path.replace(/^\/+|\/+$/g, '');
+    let path = parsedUrl.pathname;
+    let trimmedPath = path.replace(/^\/+|\/+$/g, '');
 
     // Get the query string as an object
-    var queryStringObject = parsedUrl.query;
+    let queryStringObject = parsedUrl.query;
 
     // Get the HTTP Method
-    var method = req.method.toLowerCase();
+    let method = req.method.toLowerCase();
 
     // Get the headers as an object
-    var headers = req.headers;
+    let headers = req.headers;
     
     // Get the payload, if any
-    var decoder = new StringDecoder('utf-8');
-    var buffer = '';
+    let decoder = new StringDecoder('utf-8');
+    let buffer = '';
     req.on('data',function(data){
     buffer += decoder.write(data);    
     });
@@ -37,10 +49,10 @@
         buffer += decoder.end();
 
         // Choose the handler this request should go to. If one is not found, use the notFound handler
-        var chosenHandler = typeof(router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handlers.notFound;
+        let chosenHandler = typeof(router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handlers.notFound;
 
         // Construct the data object to send to the handler
-        var data = {
+        let data = {
             'trimmedPath' : trimmedPath,
             'queryStringObject' : queryStringObject,
             'method' : method,
@@ -57,7 +69,7 @@
             payload = typeof(payload) == 'object' ? payload:{};
             
         // Convert the payload to a string
-        var payloadString = JSON.stringify(payload);
+        let payloadString = JSON.stringify(payload);
         
         // Return the response
         res.writeHead(statusCode);
@@ -77,7 +89,7 @@
  });
 
     // Define the handlers
-    var handlers = {};
+    let handlers = {};
     
     // Sample handlers
     handlers.sample = function(data, callback){
@@ -90,6 +102,6 @@
         callback(406);
     };
 
-    var router = {
+    let router = {
      'sample': handlers.sample
  }
