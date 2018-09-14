@@ -7,7 +7,7 @@
  const environments = {};
 
  // Staging (default) environment
- environments.stating = {
+ environments.staging = {
     'httpPort' : 3000,
     'httpsPort' : 3001,
     'envName' : 'staging'
