@@ -20,7 +20,8 @@
     const http = require('http');
     const url = require('url');
     const StringDecoder = require('string_decoder').StringDecoder;
-    
+    const fs = require('fs');
+
     // The server should respond to all requests with a string
     let server = http.createServer(function(req, res){
     
@@ -95,7 +96,7 @@
     // Sample handlers
     handlers.sample = function(data, callback){
         //Callback a http status code, and a payload object
-        callback(406, {'name' : 'sample handler'});
+        callback(406, {'name' : 'sample handler', 'foo' : 'bar'});
     };
 
     // Not found handler
